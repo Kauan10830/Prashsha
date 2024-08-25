@@ -47,7 +47,7 @@
         <button id="no-btn">Não</button>
     </div>
     <div id="game-container" style="display: none;">
-        <p>Você tem que fazer 50 para receber o prêmio!</p>
+        <p>Você tem que fazer 20 para receber o prêmio!</p>
         <canvas id="game-canvas" width="800" height="400"></canvas>
         <p id="score">Pontuação: 0</p>
     </div>
@@ -123,7 +123,7 @@
                         }
                     });
 
-                    if (score >= 50) {
+                    if (score >= 20) {
                         endGame(true);
                     }
                 }
@@ -138,7 +138,9 @@
                 }
 
                 function jump() {
-                    player.jump = 20;
+                    if (player.jump === 0) {
+                        player.jump = 20;
+                    }
                 }
 
                 function generateObstacle() {
@@ -154,10 +156,8 @@
                 }, 20);
 
                 setInterval(generateObstacle, 2000);
-                document.addEventListener('keydown', e => {
-                    if (e.code === 'Space') {
-                        jump();
-                    }
+                document.addEventListener('click', () => {
+                    jump();
                 });
             }
         });
